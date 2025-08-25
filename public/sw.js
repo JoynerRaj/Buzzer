@@ -4,6 +4,7 @@ const urlsToCache = [
   '/admin',
   '/styles.css',
   '/admin-styles.css',
+  '/config.js',
   '/script.js',
   '/buzzer.html',
   '/buzzer.js',
