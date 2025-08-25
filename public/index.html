@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#f39c12">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UnlockTheWishes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>🎭 UnlockTheWishes - Aladdin Buzzer System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Login Screen -->
+        <div id="loginScreen" class="screen active">
+            <div class="login-container">
+                <div class="magic-lamp">
+                    <div class="lamp-base"></div>
+                    <div class="lamp-top"></div>
+                    <div class="genie-smoke"></div>
+                </div>
+                <h1 class="title">🎭 UnlockTheWishes</h1>
+                <p class="subtitle">Enter the Cave of Wonders</p>
+                
+                <form id="loginForm" class="login-form">
+                    <div class="input-group">
+                        <input type="text" id="playerName" placeholder="Enter your name" required>
+                        <div class="input-border"></div>
+                    </div>
+                    <button type="submit" class="join-btn">
+                        <span>Join the Magic</span>
+                        <div class="btn-sparkle"></div>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Buzzer Screen -->
+        <div id="buzzerScreen" class="screen">
+            <div class="header">
+                <h2>Welcome, <span id="playerNameDisplay"></span>!</h2>
+                <div class="status-indicator">
+                    <span id="statusText">Waiting for round to start...</span>
+                </div>
+            </div>
+
+            <div class="buzzer-container">
+                <div class="carpet-container">
+                    <div class="magic-carpet">
+                        <div class="carpet-pattern"></div>
+                    </div>
+                </div>
+                
+                <button id="buzzerBtn" class="buzzer-button" disabled>
+                    <div class="buzzer-inner">
+                        <span class="buzzer-text">PRESS</span>
+                        <div class="buzzer-glow"></div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="leaderboard">
+                <h3>🏆 Current Round Results</h3>
+                <div id="resultsList" class="results-list">
+                    <div class="no-results">No results yet...</div>
+                </div>
+            </div>
+
+            <div class="participants">
+                <h3>👥 Participants (<span id="participantCount">0</span>)</h3>
+                <div id="participantsList" class="participants-list">
+                    <div class="no-participants">No participants yet...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 

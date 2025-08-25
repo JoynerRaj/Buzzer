@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f39c12">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="UnlockTheWishes Admin">
+    <title>🎮 Admin Panel - UnlockTheWishes</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>🎮 Admin Panel</h1>
+            <p>Control the UnlockTheWishes Buzzer System</p>
+        </header>
+
+        <div class="admin-content">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2>🎯 Round Controls</h2>
+                <div class="control-buttons">
+                    <button id="startBtn" class="control-btn start-btn">
+                        <span class="btn-icon">▶️</span>
+                        <span class="btn-text">Start Round</span>
+                    </button>
+                    <button id="stopBtn" class="control-btn stop-btn" disabled>
+                        <span class="btn-icon">⏹️</span>
+                        <span class="btn-text">Stop Round</span>
+                    </button>
+                    <button id="resetBtn" class="control-btn reset-btn">
+                        <span class="btn-icon">🔄</span>
+                        <span class="btn-text">Reset System</span>
+                    </button>
+                </div>
+                
+                <div class="round-info">
+                    <div class="info-item">
+                        <span class="info-label">Current Round:</span>
+                        <span id="currentRound" class="info-value">1</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Status:</span>
+                        <span id="buzzerStatus" class="info-value">Inactive</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Participants:</span>
+                        <span id="participantCount" class="info-value">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Results -->
+            <div class="results-panel">
+                <h2>🏆 Live Results</h2>
+                <div id="liveResults" class="live-results">
+                    <div class="no-results">No results yet...</div>
+                </div>
+            </div>
+
+            <!-- Participants -->
+            <div class="participants-panel">
+                <h2>👥 Connected Participants</h2>
+                <div id="participantsList" class="participants-list">
+                    <div class="no-participants">No participants connected...</div>
+                </div>
+            </div>
+
+            <!-- Round History -->
+            <div class="history-panel">
+                <h2>📊 Round History</h2>
+                <div id="roundHistory" class="round-history">
+                    <div class="no-history">No rounds completed yet...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalParticipants">0</div>
+                    <div class="stat-label">Total Participants</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="totalRounds">0</div>
+                    <div class="stat-label">Rounds Completed</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-info">
+                    <div class="stat-value" id="avgResponseTime">0s</div>
+                    <div class="stat-label">Avg Response Time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 
