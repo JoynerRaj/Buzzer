@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#f39c12">
+    <title>🎯 Buzzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="buzzerScreen" class="screen active">
+            <div class="header">
+                <h2>Welcome, <span id="playerNameDisplay"></span>!</h2>
+                <div class="status-indicator">
+                    <span id="statusText">Waiting for round to start...</span>
+                </div>
+            </div>
+
+            <div class="buzzer-container">
+                <div class="carpet-container">
+                    <div class="magic-carpet">
+                        <div class="carpet-pattern"></div>
+                    </div>
+                </div>
+                
+                <button id="buzzerBtn" class="buzzer-button" disabled>
+                    <div class="buzzer-inner">
+                        <span class="buzzer-text">PRESS</span>
+                        <div class="buzzer-glow"></div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="leaderboard">
+                <h3>🏆 Current Round Results</h3>
+                <div id="resultsList" class="results-list">
+                    <div class="no-results">No results yet...</div>
+                </div>
+            </div>
+
+            <div class="participants">
+                <h3>👥 Participants (<span id="participantCount">0</span>)</h3>
+                <div id="participantsList" class="participants-list">
+                    <div class="no-participants">No participants yet...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
+    <script>
+        window.SOCKET_SERVER_URL = window.SOCKET_SERVER_URL || undefined;
+    </script>
+    <script src="buzzer.js"></script>
+</body>
+</html>
+
+

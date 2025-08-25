@@ -5,6 +5,8 @@ const urlsToCache = [
   '/styles.css',
   '/admin-styles.css',
   '/script.js',
+  '/buzzer.html',
+  '/buzzer.js',
   '/admin-script.js',
   '/manifest.json'
 ];

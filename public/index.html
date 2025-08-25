@@ -80,7 +80,12 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" integrity="sha384-J2mQWl1O9uY0dtQn5q8v9iR8W6w9tS12b+zZ8wJk3sB7Q0zD6m1qvYk8GmYb7x2u" crossorigin="anonymous"></script>
+    <script>
+        // Optionally set your Socket server URL here if it's on a different host
+        // Example: window.SOCKET_SERVER_URL = 'https://your-buzzer-server.example.com';
+        window.SOCKET_SERVER_URL = window.SOCKET_SERVER_URL || undefined;
+    </script>
     <script src="script.js"></script>
     <script>
         // Register service worker for PWA functionality

@@ -1,5 +1,20 @@
 // Socket.IO connection
-const socket = io();
+let socket;
+try {
+    if (typeof io !== 'undefined') {
+        socket = io(window.SOCKET_SERVER_URL || undefined, {
+            transports: ['websocket', 'polling']
+        });
+    } else {
+        throw new Error('Socket.IO client not loaded');
+    }
+} catch (err) {
+    console.warn('Socket disabled:', err && err.message ? err.message : err);
+    socket = {
+        on: () => {},
+        emit: () => {}
+    };
+}
 
 // DOM elements
 const loginScreen = document.getElementById('loginScreen');
@@ -162,17 +177,9 @@ function handleLogin(e) {
         return;
     }
 
-    currentPlayer = playerName;
-    playerNameDisplay.textContent = playerName;
-    
-    // Register with server
-    socket.emit('register', { name: playerName });
-    
-    // Switch to buzzer screen
-    loginScreen.classList.remove('active');
-    buzzerScreen.classList.add('active');
-    
-    showNotification(`Welcome to the magic, ${playerName}!`, 'success');
+    // Persist and redirect to buzzer page
+    try { localStorage.setItem('playerName', playerName); } catch (_) {}
+    window.location.href = '/buzzer.html';
 }
 
 function handleBuzzerPress() {
