@@ -105,7 +105,10 @@
         </div>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js" crossorigin="anonymous"></script>
+    <script>
+        window.SOCKET_SERVER_URL = window.SOCKET_SERVER_URL || undefined;
+    </script>
     <script src="admin-script.js"></script>
     <script>
         // Register service worker for PWA functionality

@@ -1,5 +1,17 @@
 // Socket.IO connection
-const socket = io();
+let socket;
+try {
+    if (typeof io !== 'undefined') {
+        socket = io(window.SOCKET_SERVER_URL || undefined, {
+            transports: ['websocket', 'polling']
+        });
+    } else {
+        throw new Error('Socket.IO client not loaded');
+    }
+} catch (err) {
+    console.warn('Socket disabled:', err && err.message ? err.message : err);
+    socket = { on: () => {}, emit: () => {} };
+}
 
 // DOM elements
 const startBtn = document.getElementById('startBtn');
